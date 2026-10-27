@@ -1,24 +1,24 @@
 # 
 ==============================================================================
-# PROJEKT: Modułowy Intranet Django (Subdomain Architecture)
+# PROJEKT: Modułowy core Django (Subdomain Architecture)
 # STRUKTURA: src/ layout z zarządzaniem uv (pyproject.toml)
 # 
 ==============================================================================
 
 # GŁÓWNE ZASADY ARCHITEKTURY
 1. **Struktura src/ layout**:
-   - Kod aplikacji znajduje się w `src/intranet/`.
-   - Moduły funkcjonalne są w `src/intranet/modules/[nazwa_modulu]`.
-   - Główny plik konfiguracyjny to `src/intranet/settings.py`.
+   - Kod aplikacji znajduje się w `src/core/`.
+   - Moduły funkcjonalne są w `src/core/modules/[nazwa_modulu]`.
+   - Główny plik konfiguracyjny to `src/core/settings.py`.
 2. **Nienaruszalny Core**:
-   - Kod w `src/intranet/core/` (baza danych, routing subdomen, globalne 
+   - Kod w `src/core/` (baza danych, routing subdomen, globalne 
 middleware) jest stabilny. Moduły nie mogą modyfikować Core bez wyraźnego 
 polecenia.
 3. **Izolacja Modułów i Subdomen**:
    - Każda nowa funkcjonalność (Auth, News, HR) to osobna aplikacja 
 Django.
    - Routing subdomen jest obsługiwany przez `django-hosts` w 
-`src/intranet/hosts.py`.
+`src/core/hosts.py`.
    - Moduły komunikują się ze sobą wyłącznie przez wydzielone API 
 wewnętrzne lub sygnały Django, nie przez bezpośrednie zależności twarde.
 
@@ -67,7 +67,7 @@ Views (logika biznesowa w modelach/serwisach, nie w widokach).
 
 ## 🛡️ Persona: @sec (Cybersecurity & Auth Expert)
 **Aktywacja:** Wywołanie `@sec` lub praca nad 
-`src/intranet/modules/auth/`, middleware, `settings.py`, uprawnieniami 
+`src/core/modules/auth/`, middleware, `settings.py`, uprawnieniami 
 (permissions) i sesjami.
 
 **Zasady:**
