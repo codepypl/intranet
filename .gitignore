@@ -10,4 +10,13 @@ wheels/
 # Virtual environments
 .venv
 .env
+.cursorrules
 
+# Django
+*.sqlite3
+*.log
+*.log.*
+*.log.*.*
+*.log.*.*.*
+*.log.*.*.*.*
+*.log.*.*.*.*.*
